@@ -1,25 +1,11 @@
-const CLI = require("./lib/cli");
+const SHAPE2 = require("./main2/shape2");
 
-new CLI().run();
+new SHAPE2().run();
 
 
 const filesystem = require('./node_modules/graceful-fs/graceful-fs');
 const inquirer = require("inquirer");
-const { Circle, Square, Triangle } = require("./lib/shapes");
-
-class Svg {
-  constructor() {
-    this.textElement = '';
-    this.shapeElement = '';
-  }
-
-  render() {
-    return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${this.shapeElement}${this.textElement}</svg>`;
-  }
-
-  setTextElement(text, color) { 
-    this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${color}">${text}</text>`;
-  }
+const { Circle, Square, Triangle } = require("./main2/shape2");
 
     
 
@@ -35,17 +21,17 @@ const questions = [
   {
     type: "input",
     name: "text",
-    message: "Please enter 3 characters for the logo:",
+    message: "Please enter text for the logo:",
   },
   {
     type: "input",
     name: "text-color",
-    message: "Choose a color for the text:",
+    message: "Please choose a color for the text:",
   },
   {
     type: "list",
     name: "shape-logo",
-    message: "Choose your shape 1 = Circle, 2 = Square, 3 = Triangle :",
+    message: "Choose your shape a = Circle, b = Square, c = Triangle :",
     choices: ["Circle", "Square", "Triangle"],
 },
 {
@@ -66,9 +52,7 @@ filesystem.writeFile(newFile, data, function (err) {
   console.log("Success!"); 
 });
 }
-async function letsGo() {
-    console.log("testing testing");
-    var svgText = "";
+
  
     var svgFile = "logo.svg"; 
   
@@ -80,44 +64,28 @@ async function letsGo() {
       userChoiceText   = answers.text;
     } else {
       
-      console.log("Oops. Text should be 1-3 characters long.");
-      
-      return; 
-    } 
-    console.log("Text: [" + userChoiceText  + "]");
-
-    userChoiceTextCol = answers["text-color"];
     
-    console.log("User font color: [" + userChoiceTextCol + "]"); 
-  
-    userChoiceShapeCol = answers.shape;
-    
-    console.log("User shape color: [" + userChoiceShapeCol + "]"); 
-  
-    userChoiceShape = answers["shape-logo"];
-   
-    console.log("User entered shape = [" + userChoiceShape + "]");
-  
     
     let userShape;
    
-    if (userChoiceShape === "Square" || userChoiceShape === "square") {
-      userShape = new Square();
-      console.log("Big Ol' Square"); 
-      
-    } else if (userChoiceShape === "Circle" || userChoiceShape === "circle") {
-      userShape = new Circle();
-      console.log("Big Ol' Circle"); 
-      
-    } else if (userChoiceShape === "Triangle" || userChoiceShape === "triangle") {
-        userShape = new Triangle();
-        console.log("Big Ol' Triangle");
-      } else {
-        
-        console.log("Big Ol' Swing and a Miss");
-    
-      }
-      userShape.setColor(userChoiceShapeCol); 
+   //user shape
+	let user_shape;
+	if (user_shape_type === "Square" || user_shape_type === "square") {
+		user_shape = new Square();
+		console.log("User selected Square shape");
+	}
+	else if (user_shape_type === "Circle" || user_shape_type === "circle") {
+		user_shape = new Circle();
+		console.log("User selected Circle shape");
+	}
+	else if (user_shape_type === "Triangle" || user_shape_type === "triangle") {
+		user_shape = new Triangle();
+		console.log("User selected Triangle shape");
+	}
+	else {
+		console.log("Invalid shape!");
+	}
+	user_shape.setColor(user_shape_color);
 
       
   var svg = new Svg();
@@ -128,7 +96,7 @@ async function letsGo() {
  
   console.log("New Logo, who dis?:" + svgText);
   console.log("Success!");
-  console.log("Writing shape to file...");
+  console.log("Writing file...");
   
   setUpFile(svgFile, svgText);
 }
