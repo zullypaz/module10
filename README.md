@@ -6,6 +6,10 @@ The goal of the task is to build a Node.js command-line application to generate 
 # Video 
 
 
+https://github.com/user-attachments/assets/c6e47452-0728-4a41-8958-8e72ebcefb19
+
+
+
 
 
 # Technologies used: 
