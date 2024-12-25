@@ -3,6 +3,9 @@ Object-oriented Programming Challenge: SVG Logo Maker
 
 The goal of the task is to build a Node.js command-line application to generate a logo and save it as an [SVG file]
 
+![image](https://github.com/user-attachments/assets/c4ccb690-49c8-45cf-b917-5440635fe454)
+
+
 # Video 
 
 
